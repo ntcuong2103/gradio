@@ -397,7 +397,7 @@ def get_models_interface(model_name, api_key, alias, **kwargs):
 def get_spaces(model_name, api_key, alias, **kwargs):
     space_url = "https://huggingface.co/spaces/{}".format(model_name)
     print("Fetching interface from: {}".format(space_url))
-    iframe_url = "https://hf.space/embed/{}/+".format(model_name)
+    iframe_url = requests.get(f"https://huggingface.co/api/spaces/{model_name}/host").json().get("host")
 
     r = requests.get(iframe_url)
     result = re.search(

@@ -256,8 +256,8 @@ function create_custom_element() {
 			const initial_height = this.getAttribute("initial_height");
 			let autoscroll = this.getAttribute("autoscroll");
 
-			let source = space
-				? `https://hf.space/embed/${space}/+/`
+			const source = space
+				? (await (await fetch(`https://huggingface.co/api/spaces/${space}/host`)).json()).host
 				: this.getAttribute("src");
 
 			const _autoscroll = autoscroll === "true" ? true : false;
