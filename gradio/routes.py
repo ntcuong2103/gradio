@@ -182,7 +182,7 @@ class App(FastAPI):
 
             try:
                 template = (
-                    "frontend/share.html" if app.blocks.share else "frontend/index.html"
+                    "frontend/index.html"
                 )
                 return templates.TemplateResponse(
                     template, {"request": request, "config": config}
