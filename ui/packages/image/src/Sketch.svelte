@@ -10,6 +10,7 @@
 
 	export let value;
 	export let mode = "sketch";
+	export let out_type = "online";
 	export let brush_color = "#0b0f19";
 	export let brush_radius = 50;
 
@@ -377,7 +378,14 @@
 	};
 
 	let trigger_on_change = () => {
-		dispatch("change", get_image_data());
+		if (out_type === "online")
+		{
+			dispatch("change", get_save_data());
+		}
+		else
+		{
+			dispatch("change", get_image_data());
+		}
 	};
 
 	export function clear() {

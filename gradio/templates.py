@@ -50,6 +50,31 @@ class Sketchpad(components.Image):
             **kwargs
         )
 
+class OnlineSketchpad(components.Image):
+
+    is_template = True
+
+    def __init__(self, **kwargs):
+        super().__init__(
+            image_mode="L",
+            source="canvas",
+            shape=(28, 28),
+            invert_colors=True,
+            type="json",
+            **kwargs
+        )
+    def preprocess(self, x):
+        import json
+        x_obj = json.loads(x)
+
+        x_obj['lines'][0]['points'][0]['x']
+        x_list =  [[[int(point['x']), int(point['y'])] for point in line['points']]  for line in x_obj['lines']]
+        return str(x_list)
+
+    def postprocess(self, y):
+        return y
+
+
 
 class Pil(components.Image):
     """

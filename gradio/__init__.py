@@ -68,6 +68,7 @@ from gradio.templates import (
     Pil,
     PlayableVideo,
     Sketchpad,
+    OnlineSketchpad,
     Text,
     TextArea,
     Webcam,

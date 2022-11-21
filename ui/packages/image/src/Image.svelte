@@ -27,6 +27,7 @@
 	export let streaming: boolean = false;
 	export let pending: boolean = false;
 	export let mirror_webcam: boolean;
+	export let type;
 
 	let sketch: Sketch;
 
@@ -114,7 +115,11 @@
 			on:undo={() => sketch.undo()}
 			on:clear={() => sketch.clear()}
 		/>
-		<Sketch {value} bind:this={sketch} on:change={handle_save} />
+		{#if type ==="json"}
+			<Sketch {value} bind:this={sketch} out_type="online" on:change={handle_save} />
+		{:else}
+			<Sketch {value} bind:this={sketch} on:change={handle_save} />
+		{/if}
 	{:else if value === null || streaming}
 		{#if source === "upload"}
 			<Upload
